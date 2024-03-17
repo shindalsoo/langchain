@@ -24,7 +24,7 @@ def main():
     page_title="DirChat",
     page_icon=":books:")
 
-    st.title("_Private Data :red[QA Chat]_ :books:")
+    st.title("그룹웨어 자료분석 :red[QA Chat] :books:")
 
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
@@ -36,9 +36,10 @@ def main():
         st.session_state.processComplete = None
 
     with st.sidebar:
-        uploaded_files =  st.file_uploader("Upload your file",type=['pdf','docx'],accept_multiple_files=True)
-        openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
-        process = st.button("Process")
+        uploaded_files =  st.file_uploader("분석할 자료가 무엇입니까?",type=['pdf','docx','pptx'],accept_multiple_files=True)
+        # openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+        openai_api_key = st.secrets["openai_api_key"]
+        process = st.button("분석")
     if process:
         if not openai_api_key:
             st.info("Please add your OpenAI API key to continue.")
